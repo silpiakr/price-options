@@ -1,6 +1,7 @@
 import PropTypes from "prop-types";
 import { FaCheckCircle } from "react-icons/fa";
 
+// eslint-disable-next-line react/prop-types
 const Features = ({ feature }) => {
     return (
         <div>
