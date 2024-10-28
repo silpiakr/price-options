@@ -1,10 +1,16 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { BarChart, Bar, Rectangle, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
+import { BarChart, Bar,  XAxis, YAxis, Tooltip } from 'recharts';
+
+import { ColorRing } from 'react-loader-spinner'
+
 
 
 const Phones = () => {
+
     const [phones, setPhones] = useState([]);
+
+    const [loading, setLoading] = useState(true)
 
     useEffect(() => {
         // fetch('https://openapi.programming-hero.com/api/phones?search=iphone')
@@ -29,12 +35,26 @@ const Phones = () => {
                 // setPhones(data.data.data)
                 console.log(phoneWithFakeData);
                 setPhones(phoneWithFakeData);
-
+                setLoading(false)
             })
 
     }, [])
+
     return (
         <div className="py-12">
+            {loading && <div>
+                <ColorRing
+                visible={true}
+                height="80"
+                width="80"
+                ariaLabel="color-ring-loading"
+                wrapperStyle={{}}
+                wrapperClass="color-ring-wrapper"
+                colors={['#e15b64', '#f47e60', '#f8b26a', '#abbd81', '#849b87']}
+            />    
+            </div>
+            }
+
             <h2 className="text-5xl font-bold text-center">Phones: {phones.length}</h2>
             <BarChart
                 width={600}
